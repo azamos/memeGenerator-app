@@ -1,5 +1,5 @@
 import React from 'react';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import './search.css';
 let suggestionList = [];
 export default function Search({ onChange, value, getSuggestions, update }) {
@@ -8,13 +8,12 @@ export default function Search({ onChange, value, getSuggestions, update }) {
     //     update();
     // }
 
-    useEffect( () => {
+    useEffect(() => {
         let temp = getSuggestions();
-        if(temp.length !==0 && suggestionList.length!==temp.length){
-            suggestionList = temp;
-            console.log(suggestionList);
-            update();
-        }
+        //if(temp.length !==0 && suggestionList.length!==temp.length){
+        suggestionList = temp;
+        update();
+        //}
     });
 
     return (

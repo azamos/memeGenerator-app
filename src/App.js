@@ -26,9 +26,9 @@ function App() {
   function fetchSuggestions(thingToSearch){
     fetch(`http://localhost:3000/api/search/${thingToSearch}`)
       .then(res => res.json())
-      .then(suggestionsFromServerArray => {
-        generateViewAbleReccomendations(suggestionsFromServerArray);
-      })
+      .then(suggestionsFromServerArray => 
+        generateViewAbleReccomendations(suggestionsFromServerArray)
+        )
   }
 
   function generateViewAbleReccomendations(array) {
