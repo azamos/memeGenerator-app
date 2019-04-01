@@ -1,7 +1,6 @@
 .Main{
     border: 1vh solid black;
-    border-radius: 1vh;
+    border-radius: 1em;
     color:black;
     background-color: white; 
-    text-align: center;
 }
