@@ -1,28 +1,48 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
+import Search from './components/search/search';
+import Suggestion from './components/suggestion/suggestion';
+import SuggestionsList from './components/suggestion/SuggestionsList';
+let suggestionList = [];
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+function App() {
+  const [searchValue, setSearchValue] = useState('');
+  const [updated, setUpdated] = useState(Date.now());
+  return (
+    <div className="App">
+      <Search onChange={searchChanged} value={searchValue} update={updateDate} getSuggestions = {getSuggestions} />
+      <SuggestionsList suggestionList = {suggestionList} />
+    </div>
+  );
+  //internal functions
+  function searchChanged(e) {
+    let newValue = e.target.value;
+    setImmediate(fetchSuggestions,newValue);
+    setSearchValue(newValue);
+  }
+  function fetchSuggestions(thingToSearch){
+    fetch(`http://localhost:3000/api/search/${thingToSearch}`)
+      .then(res => res.json())
+      .then(suggestionsFromServerArray => {
+        generateViewAbleReccomendations(suggestionsFromServerArray);
+      })
+  }
+
+  function generateViewAbleReccomendations(array) {
+    for (const cell of array) {
+      typeof cell === "string" ? suggestionList.push(<Suggestion sug={cell} />) :
+        cell.name && typeof cell.name === "string" ? suggestionList.push(<Suggestion sug={cell.name} />)
+          : console.log('cell is incompatible: ', cell);
+    }
+    updateDate();
+  }
+  function getSuggestions(){
+    return suggestionList;
+  }
+
+  function updateDate() {
+    setUpdated(Date.now());
   }
 }
-
 export default App;
