@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Search from './components/search/search';
 import Suggestion from './components/suggestion/suggestion';
-import SuggestionsList from './components/suggestion/SuggestionsList';
+//import SuggestionsList from './components/suggestion/SuggestionsList';
 let suggestionList = [];
 
 function App() {
@@ -12,12 +12,14 @@ function App() {
   return (
     <div className="App">
       <Search onChange={searchChanged} value={searchValue} update={updateDate} getSuggestions = {getSuggestions} />
-      <SuggestionsList suggestionList = {suggestionList} />
     </div>
-  );
+  );//<SuggestionsList suggestionList = {suggestionList} />
   //internal functions
   function searchChanged(e) {
-    let newValue = e.target.value;
+    let newValue = e.target.value.toString().trim();
+    // if(newValue!==''){
+    //   setImmediate(fetchSuggestions,newValue);
+    // }
     setImmediate(fetchSuggestions,newValue);
     setSearchValue(newValue);
   }
@@ -30,6 +32,7 @@ function App() {
   }
 
   function generateViewAbleReccomendations(array) {
+    suggestionList = [];
     for (const cell of array) {
       typeof cell === "string" ? suggestionList.push(<Suggestion sug={cell} />) :
         cell.name && typeof cell.name === "string" ? suggestionList.push(<Suggestion sug={cell.name} />)
