@@ -1,8 +1,6 @@
 .Upload{
     border: 0.1vmin solid white;
     border-radius: 0.5vmin;
-    position: fixed;
-    margin-top: 25vmin;
     padding: 1vmin;
     background-color:brown;
 }

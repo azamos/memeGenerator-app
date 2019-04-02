@@ -15,9 +15,10 @@ function App() {
   const [fileName, setFileName] = useState("");
   return (
     <div className="App">
-      <AppBar>
-        <Toolbar className="Toolbar">
-          <Router>
+      <Router>
+        <AppBar>
+          <Toolbar className="Toolbar">
+
             <Link to="/generateAMeme">
               <Button variant="extendedFab">Generate a meme</Button>
             </Link>
@@ -30,26 +31,26 @@ function App() {
             <Link to="/topUsers">
               <Button variant="extendedFab">Top users</Button>
             </Link>
-            <Route path="/uploadImage"
-              render={() =>
-                <Upload description={description} fileName={fileName}
-                  descriptionChanged={descriptionChanged} fileChanged={fileChanged}
-                />}
-            />
-            <Route path="/topMemes" />
-            <Route path="/topUsers" />
-            <Route path="/generateAMeme" />
-
             <Search onChange={searchChanged} value={searchValue} update={updateDate} />
-
             <Link to="/login or register">
               <Button variant="extendedFab">login or register</Button>
             </Link>
-            <Route path="/login or register" />
 
-          </Router>
-        </Toolbar>
-      </AppBar>
+          </Toolbar>
+        </AppBar>
+
+        <Route path="/uploadImage"
+          render={() =>
+            <Upload description={description} fileName={fileName}
+              descriptionChanged={descriptionChanged} fileChanged={fileChanged}
+            />}
+        />
+        <Route path="/topMemes" />
+        <Route path="/topUsers" />
+        <Route path="/generateAMeme" />
+        <Route path="/login or register" />
+
+      </Router>
     </div>
   );
   //internal functions
