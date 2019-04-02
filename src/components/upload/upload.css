@@ -1,3 +1,19 @@
 .Upload{
-    background-color: #162C03;
+    border: 0.1vmin solid white;
+    border-radius: 0.5vmin;
+    position: fixed;
+    margin-top: 25vmin;
+    padding: 1vmin;
+    background-color:brown;
+}
+.Description{
+    background-color: white;
+    border-radius: 0.2em;
+    background-color: white;
+    width: 30vmin;
+}
+
+.UploadBtn{
+    background-color: white;
+    border-radius: 0.5vmin;
 }
