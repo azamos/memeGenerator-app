@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { useState, useEffect } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import './App.css';
 import Search from './components/search/search';
 import Suggestion from './components/suggestion/suggestion';
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-//import Menu from '@material-ui/core/Menu';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
-let suggestionList = [<Suggestion sug = "example"/>,<Suggestion sug = "example"/>,<Suggestion sug = "example"/>,<Suggestion sug = "example"/>];
+let suggestionList = [<Suggestion sug="example1" />, <Suggestion sug="example2" />, <Suggestion sug="example3" />, <Suggestion sug="example4" />];
 //let contoller = new AbortController();
 //let signal = contoller.signal;
 let currentEvent = null;
@@ -19,8 +19,33 @@ function App() {
   return (
     <div className="App">
       <AppBar>
-        <Toolbar className = "Toolbar">
-          <Search onChange={searchChanged} value={searchValue} update={updateDate} getSuggestions={getSuggestions} />
+        <Toolbar className="Toolbar">
+          <Router>
+            <Link to="/generateAMeme">
+              <Button variant="extendedFab">Generate a meme</Button>
+            </Link>
+            <Link to="/uploadImage">
+              <Button variant="extendedFab">Upload an image</Button>
+            </Link>
+            <Link to="/topMemes">
+              <Button variant="extendedFab">Top memes</Button>
+            </Link>
+            <Link to="/topUsers">
+              <Button variant="extendedFab">Top users</Button>
+            </Link>
+            <Route path="/uploadImage" />
+            <Route path="/topMemes" />
+            <Route path="/topUsers" />
+            <Route path="/generateAMeme" />
+
+            <Search onChange={searchChanged} value={searchValue} update={updateDate} getSuggestions={getSuggestions} />
+
+            <Link to="/login or register">
+              <Button variant="extendedFab">login or register</Button>
+            </Link>
+            <Route path="/login or register" />
+
+          </Router>
         </Toolbar>
       </AppBar>
     </div>

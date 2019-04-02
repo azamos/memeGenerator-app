@@ -16,8 +16,8 @@ export default function Search({ onChange, value, getSuggestions, update }) {
 
     return (
         <div>
-            <TextField value={value} onChange={onChange} v label='Search' className="Main" />>
-                <AutoCompleteList list = {suggestionList}/>
+            <TextField variant = "filled" value={value} onChange={onChange} v label='Search' className="Main" />
+            <AutoCompleteList list={suggestionList} />
         </div>
     );
 }

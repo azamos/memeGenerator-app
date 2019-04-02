@@ -6,7 +6,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 export default function Suggestion({ sug }) {
     return (
         <ListItem>
-            <ListItemText>{sug}</ListItemText>
+            <ListItemText >{sug}</ListItemText>
         </ListItem>
     );
 }

@@ -10,12 +10,15 @@
 }
 
 .Toolbar{
+  align-items: flex-start;
   justify-content: center;
   background-color: brown;
 }
 
-.App-link {
-  color: #61dafb;
+a{
+  text-decoration: none;
+  color: white;
+  margin: 1vmin;
 }
 
 @keyframes App-logo-spin {

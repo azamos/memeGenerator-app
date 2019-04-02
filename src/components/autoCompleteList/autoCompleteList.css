@@ -1,6 +1,7 @@
 .autoComp {
-  position: fixed;
+    position: fixed;
     z-index: 99;
+    margin: 0%;
     background-color: white;
     border: 0.1vmin solid green;
     border-radius: 0.5vmin;
