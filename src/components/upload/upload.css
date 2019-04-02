@@ -2,12 +2,11 @@
     border: 0.1vmin solid white;
     border-radius: 0.5vmin;
     padding: 1vmin;
-    background-color:brown;
+    background-color: #8b1919;
 }
 .Description{
     background-color: white;
     border-radius: 0.2em;
-    background-color: white;
     width: 30vmin;
 }
 

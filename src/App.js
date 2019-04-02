@@ -7,6 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Upload from './components/upload/upload';
+import { Typography } from '@material-ui/core';
 
 function App() {
   const [searchValue, setSearchValue] = useState('');
@@ -35,13 +36,13 @@ function App() {
             <Link to="/login or register">
               <Button variant="extendedFab">login or register</Button>
             </Link>
-
+          <Typography variant="subtitle2">last updated: {new Date(updated).toLocaleString()}</Typography>
           </Toolbar>
         </AppBar>
 
         <Route path="/uploadImage"
           render={() =>
-            <Upload description={description} fileName={fileName}
+            <Upload description={description} fileName={fileName} cancelUpload = {cancelUpload}
               descriptionChanged={descriptionChanged} fileChanged={fileChanged}
             />}
         />
@@ -53,9 +54,8 @@ function App() {
       </Router>
     </div>
   );
-  //internal functions
+
   function searchChanged(e) {
-    //contoller.abort();
     let newValue = e.target.value.toString().trim();
     setSearchValue(newValue);
   }
@@ -67,6 +67,10 @@ function App() {
   }
   function fileChanged(e) {
     setFileName(e.target.value);
+  }
+  function cancelUpload(){
+    setDescription("");
+    setFileName("");
   }
 }
 export default App;
