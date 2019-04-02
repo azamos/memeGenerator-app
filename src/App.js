@@ -7,8 +7,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import Upload from './components/upload/upload';
 
-let suggestionList = [<Suggestion sug="example1" />, <Suggestion sug="example2" />, <Suggestion sug="example3" />, <Suggestion sug="example4" />];
+let suggestionList = [/*<Suggestion sug="example1" />, <Suggestion sug="example2" />, <Suggestion sug="example3" />, <Suggestion sug="example4" />*/];
 //let contoller = new AbortController();
 //let signal = contoller.signal;
 let currentEvent = null;
@@ -16,6 +17,8 @@ let currentEvent = null;
 function App() {
   const [searchValue, setSearchValue] = useState('');
   const [updated, setUpdated] = useState(Date.now());
+  const [description, setDescription] = useState("");
+  const [fileName, setFileName] = useState("");
   return (
     <div className="App">
       <AppBar>
@@ -33,7 +36,12 @@ function App() {
             <Link to="/topUsers">
               <Button variant="extendedFab">Top users</Button>
             </Link>
-            <Route path="/uploadImage" />
+            <Route path="/uploadImage"
+              render={() =>
+                <Upload description={description} fileName={fileName}
+                  descriptionChanged={descriptionChanged} fileChanged={fileChanged}
+                />}
+            />
             <Route path="/topMemes" />
             <Route path="/topUsers" />
             <Route path="/generateAMeme" />
@@ -85,6 +93,12 @@ function App() {
 
   function updateDate() {
     setUpdated(Date.now());
+  }
+  function descriptionChanged(e) {
+    setDescription(e.target.value);
+  }
+  function fileChanged(e) {
+    setFileName(e.target.value);
   }
 }
 export default App;

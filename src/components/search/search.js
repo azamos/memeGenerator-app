@@ -9,9 +9,9 @@ let suggestionList = [];
 export default function Search({ onChange, value, getSuggestions, update }) {
 
     useEffect(() => {
+        console.log('here');
         let temp = getSuggestions();
         suggestionList = temp;
-        update();
     });
 
     return (
