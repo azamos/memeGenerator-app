@@ -4,7 +4,11 @@ import './App.css';
 import Search from './components/search/search';
 import Suggestion from './components/suggestion/suggestion';
 
-let suggestionList = [];
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+//import Menu from '@material-ui/core/Menu';
+
+let suggestionList = [<Suggestion sug = "example"/>,<Suggestion sug = "example"/>,<Suggestion sug = "example"/>,<Suggestion sug = "example"/>];
 //let contoller = new AbortController();
 //let signal = contoller.signal;
 let currentEvent = null;
@@ -14,7 +18,11 @@ function App() {
   const [updated, setUpdated] = useState(Date.now());
   return (
     <div className="App">
-      <Search onChange={searchChanged} value={searchValue} update={updateDate} getSuggestions={getSuggestions} />
+      <AppBar>
+        <Toolbar className = "Toolbar">
+          <Search onChange={searchChanged} value={searchValue} update={updateDate} getSuggestions={getSuggestions} />
+        </Toolbar>
+      </AppBar>
     </div>
   );
   //internal functions

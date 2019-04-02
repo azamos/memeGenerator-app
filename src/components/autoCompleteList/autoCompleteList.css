@@ -1,0 +1,12 @@
+.autoComp {
+  position: fixed;
+    z-index: 99;
+    background-color: white;
+    border: 0.1vmin solid green;
+    border-radius: 0.5vmin;
+    width: 25vmin;
+  }
+  ul {
+    list-style-type: none;
+  }
+  
