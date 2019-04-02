@@ -2,27 +2,28 @@ import React from 'react';
 import './upload.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+let file;
 
-export default function Upload({ description, fileName, descriptionChanged, fileChanged, cancelUpload }) {
+export default function Upload({ description, fileName, descriptionChanged, fileChanged, cancelUpload, memeName ,memeNameChanged }) {
     let formData = new FormData();
-    let uploadEvent = null;
     function fileChangedCallbacks(e) {
         fileChanged(e);
-        uploadEvent = e;
+        file = e.target.files[0];
     }
     function postMeme() {
-        if(!uploadEvent.toString()){return;}//TODO: add serverside validation
-        formData.append('description',description);
-        formData.append('image',uploadEvent.target.files[0]);
+        if (!file) { return; }//TODO: add serverside validation
+        formData.append('name',memeName);
+        formData.append('description', description);
+        formData.append('image', file);
         fetch('http://localhost:3000/api/memes', {
             method: 'POST',
             body: formData
         })
-        .then(res=>res.json())
-        .then(result=>cleanupAndDoSomething(result))
-        .catch(err=>console.error(err));
+            .then(res => res.json())
+            .then(result => cleanupAndDoSomething(result))
+            .catch(err => console.error(err));
     }
-    function cleanupAndDoSomething(whatever){
+    function cleanupAndDoSomething(whatever) {
         console.log(whatever);
         cancelUpload();
     }
@@ -43,7 +44,11 @@ export default function Upload({ description, fileName, descriptionChanged, file
                 value={description} onChange={descriptionChanged}
             />
             <br></br>
-            <Button variant="extendedFab" onClick = {postMeme}>Upload image</Button>
+            <TextField variant="filled" label="meme name" className="Description"
+                value={memeName} onChange={memeNameChanged}
+            />
+            <br></br>
+            <Button variant="extendedFab" onClick={postMeme}>Upload image</Button>
         </div>
     );
 }

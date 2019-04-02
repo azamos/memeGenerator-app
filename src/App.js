@@ -14,6 +14,7 @@ function App() {
   const [updated, setUpdated] = useState(Date.now());
   const [description, setDescription] = useState("");
   const [fileName, setFileName] = useState("");
+  const [memeName,setMemeName] = useState("");
   return (
     <div className="App">
       <Router>
@@ -42,8 +43,8 @@ function App() {
 
         <Route path="/uploadImage"
           render={() =>
-            <Upload description={description} fileName={fileName} cancelUpload = {cancelUpload}
-              descriptionChanged={descriptionChanged} fileChanged={fileChanged}
+            <Upload description={description} fileName={fileName} memeName = {memeName} cancelUpload = {cancelUpload}
+              descriptionChanged={descriptionChanged} fileChanged={fileChanged} memeNameChanged = {memeNameChanged}
             />}
         />
         <Route path="/topMemes" />
@@ -71,6 +72,10 @@ function App() {
   function cancelUpload(){
     setDescription("");
     setFileName("");
+    setMemeName("");
+  }
+  function memeNameChanged(e){
+    setMemeName(e.target.value);
   }
 }
 export default App;
