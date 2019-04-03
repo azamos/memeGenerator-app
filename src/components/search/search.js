@@ -35,7 +35,7 @@ export default function Search({ onChange, value, update }) {
     }
     return (
         <div>
-            <TextField variant="filled" value={value} onChange={onChangeCallBackList} v label='Search' className="Main" />
+            <TextField variant="filled" value={value} onChange={onChangeCallBackList}  label='Search' className="Main" />
             <AutoCompleteList list={suggestionList} />
         </div>
     );

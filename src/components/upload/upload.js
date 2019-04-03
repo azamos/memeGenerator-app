@@ -35,7 +35,6 @@ export default function Upload({ description, fileName, descriptionChanged, file
         imagePath = data.path;
         imageCaption = data.description;
         imageName = data.name;
-        //cancelUpload();
         updateDate();
     }
     return (
