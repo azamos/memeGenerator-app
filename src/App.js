@@ -121,6 +121,9 @@ function App() {
 
   function userLogged(user) {
     setCurrentUser(user);
+    setUserName('');
+    setUserPass('');
+    setUserEmail('');
     console.log('user is :', user);
   }
 }
