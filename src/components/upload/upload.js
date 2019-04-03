@@ -22,7 +22,7 @@ export default function Upload({ description, fileName, descriptionChanged, file
         formData.append('description', description);
         formData.append('image', file);
         cancelUpload();
-        fetch('http://localhost:3000/api/memes', {
+        fetch('http://localhost:3000/api/memes', {//TODO: create a generic insert function in db services and use it here.
             method: 'POST',
             body: formData
         })

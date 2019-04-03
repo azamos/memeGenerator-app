@@ -3,13 +3,15 @@ import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import './LoginRegister.css';
+import db from '../../services/dbServices';
 
 export default function LoginRegister({ name, password, email, changeHandlers, type }) {
     function signIn()
     {
         console.log('signed in');
+        db.find(name,'users')
+        .then(users=> changeHandlers.userLogged(users.pop()));//should be only one
     }
-
     function register(){
         console.log('registerd');
     }

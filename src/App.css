@@ -29,3 +29,8 @@ a{
     transform: rotate(360deg);
   }
 }
+
+.Avatar{
+  height: 80px;
+  width: 80px;
+}

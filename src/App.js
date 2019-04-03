@@ -8,8 +8,10 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Upload from './components/upload/upload';
 import { Typography } from '@material-ui/core';
-//import LoginRegister from './components/LoginRegister/LoginRegister';
+import Avatar from '@material-ui/core/Avatar';
 import Choose from './components/LoginRegister/Choose';
+const anonImage = "/static/images/avatars/anon.png";
+const anon = "anon";
 
 function App() {
   const [searchValue, setSearchValue] = useState('');
@@ -26,8 +28,11 @@ function App() {
   const changeHandlers = {
     userNameChanged,
     userPassChanged,
-    userEmailChanged
+    userEmailChanged,
+    userLogged
   }
+
+  const [currentUser, setCurrentUser] = useState({ name: anon, image: anonImage });
 
   return (
     <div className="App">
@@ -52,6 +57,7 @@ function App() {
               <Button variant="extendedFab">login or register</Button>
             </Link>
             <Typography variant="subtitle2">last updated: {new Date(updated).toLocaleString()}</Typography>
+            <Avatar alt="anon" src={currentUser.image} className="Avatar" />
           </Toolbar>
         </AppBar>
 
@@ -66,7 +72,7 @@ function App() {
         <Route path="/generateAMeme" />
 
         <Route path="/login or register" render={() =>
-            <Choose userName = {userName} userPass = {userPass} userEmail = {userEmail} changeHandlers = {changeHandlers}/>
+          <Choose userName={userName} userPass={userPass} userEmail={userEmail} changeHandlers={changeHandlers} />
         } />
 
       </Router>
@@ -110,6 +116,12 @@ function App() {
   }
   function userEmailChanged(e) {
     setUserEmail(e.target.value);
+  }
+
+
+  function userLogged(user) {
+    setCurrentUser(user);
+    console.log('user is :', user);
   }
 }
 export default App;
