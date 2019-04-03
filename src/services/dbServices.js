@@ -2,12 +2,12 @@ const Urls ={
     users: 'http://localhost:3000/api/users',
     memes: 'http://localhost:3000/api/memes'
 }
-function find(what,where){
+function find(what,where,...aditionalArgs){
     try{
         if(!(Object.keys(Urls).includes(where))){
             throw new Error('Where does not exist');
         }
-        return fetch(`${Urls[where]}/${what}`)
+        return fetch(`${Urls[where]}/${what}&${aditionalArgs}`)
         .then(res=>res.json())//if throws error, will be catched by catch block
     }
     catch(err){

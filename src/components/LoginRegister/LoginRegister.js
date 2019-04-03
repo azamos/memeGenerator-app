@@ -9,13 +9,12 @@ export default function LoginRegister({ name, password, email, changeHandlers, t
     function signIn()
     {
         console.log('signed in');
-        db.find(name,'users')
+        db.find(name,'users',password)
         .then(users=> changeHandlers.userLogged(users.pop()));//should be only one
     }
     function register(){
         console.log('registerd');
     }
-
 
     return (
         <div className = "LoginRegister">
