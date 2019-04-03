@@ -43,7 +43,7 @@ function App() {
 
         <Route path="/uploadImage"
           render={() =>
-            <Upload description={description} fileName={fileName} memeName = {memeName} cancelUpload = {cancelUpload}
+            <Upload description={description} fileName={fileName} memeName = {memeName} cancelUpload = {cancelUpload} updateDate = {updateDate}
               descriptionChanged={descriptionChanged} fileChanged={fileChanged} memeNameChanged = {memeNameChanged}
             />}
         />

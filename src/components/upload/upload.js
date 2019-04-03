@@ -2,19 +2,26 @@ import React from 'react';
 import './upload.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-let file;
+import SingleImage from '../singleImage/singleImage';
 
-export default function Upload({ description, fileName, descriptionChanged, fileChanged, cancelUpload, memeName ,memeNameChanged }) {
+let file;
+let imagePath = "";
+let imageName = "";
+let imageCaption = "";
+
+export default function Upload({ description, fileName, descriptionChanged, fileChanged, cancelUpload, memeName, memeNameChanged, updateDate }) {
     let formData = new FormData();
+
     function fileChangedCallbacks(e) {
         fileChanged(e);
         file = e.target.files[0];
     }
     function postMeme() {
         if (!file) { return; }//TODO: add serverside validation
-        formData.append('name',memeName);
+        formData.append('name', memeName);
         formData.append('description', description);
         formData.append('image', file);
+        cancelUpload();
         fetch('http://localhost:3000/api/memes', {
             method: 'POST',
             body: formData
@@ -24,8 +31,12 @@ export default function Upload({ description, fileName, descriptionChanged, file
             .catch(err => console.error(err));
     }
     function cleanupAndDoSomething(whatever) {
-        console.log(whatever);
-        cancelUpload();
+        let data = whatever.pop();
+        imagePath = data.path;
+        imageCaption = data.description;
+        imageName = data.name;
+        //cancelUpload();
+        updateDate();
     }
     return (
         <div className="Upload">
@@ -49,6 +60,8 @@ export default function Upload({ description, fileName, descriptionChanged, file
             />
             <br></br>
             <Button variant="extendedFab" onClick={postMeme}>Upload image</Button>
+            {!!imagePath ? <SingleImage name={imageName} description={imageCaption} src={imagePath} />
+                : <span></span>}
         </div>
     );
 }
