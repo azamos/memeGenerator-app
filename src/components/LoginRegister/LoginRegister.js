@@ -24,7 +24,7 @@ export default function LoginRegister({ name, password, email, changeHandlers, t
             {
                 type === "register" ? Email(email,changeHandlers.userEmailChanged):<span></span>
             }
-            <Button onClick={type === "register" ? register : signIn} variant="extendedFab">Finish</Button>
+            <Button onClick={type === "register" ? register : signIn} variant="extendedFab" className = "Finish">Finish</Button>
         </div>
     );
     function Email({email,emailChanged}) {

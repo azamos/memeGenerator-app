@@ -1,4 +1,10 @@
 .LoginRegister{
-    border-radius: 0.5vmin;
-    background-color: #E0E0E0;
+    display: grid;
+    justify-content: space-evenly;
+    margin:1vmin;
+    padding: 0.5vmin;
+}
+.Finish{
+    background-color: #213979 !important;
+    color: white !important;
 }
