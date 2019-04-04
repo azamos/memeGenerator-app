@@ -4,8 +4,9 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import './LoginRegister.css';
 import db from '../../services/dbServices';
+let imageFile = null;
 
-export default function LoginRegister({ name, password, userEmail, userImage, changeHandlers, type }) {
+export default function LoginRegister({ name, password, userEmail, userImage, userImageFile, changeHandlers, type }) {
     function signIn() {
         db.find(name, 'users', password)
             .then(result => {
@@ -16,8 +17,15 @@ export default function LoginRegister({ name, password, userEmail, userImage, ch
             })
             .catch(err => console.log(err));
     }
-    function register(e) {
-        db.insertUser(name, password, userEmail, e.target.files[0]);
+    function register() {
+        db.insertUser(name, password, userEmail,userImageFile)
+        .then(result => {
+            if (result instanceof Array) {
+                return changeHandlers.userLogged(result.pop())
+            }
+            console.log(result);//TODO: present a styled alert or equivilant.
+        })
+        .catch(err => console.log(err));
     }
 
     return (

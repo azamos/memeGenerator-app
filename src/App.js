@@ -26,6 +26,7 @@ function App() {
   const [userPass, setUserPass] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userImage, setUserImage] = useState('');//userImage will hold chosen file value for upload.
+  const [userImageFile, setUserImageFile] = useState(null);
   const changeHandlers = {
     userNameChanged,
     userPassChanged,
@@ -75,7 +76,7 @@ function App() {
         <Route path="/generateAMeme" />
 
         <Route path="/login or register" render={() =>
-          <Choose userName={userName} userPass={userPass} userEmail={userEmail} userImage = {userImage} changeHandlers={changeHandlers} />
+          <Choose userName={userName} userPass={userPass} userEmail={userEmail} userImage = {userImage} userImageFile = {userImageFile} changeHandlers={changeHandlers} />
         } />
 
       </Router>
@@ -122,10 +123,12 @@ function App() {
   }
   function userImageChanged(e){
     setUserImage(e.target.value);
+    setUserImageFile(e.target.files[0]);
   }
   function resetEmailAndImage(){
     setUserImage('');
     setUserEmail('');
+    setUserImageFile(null);
   }
 
 

@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import LoginRegister from './LoginRegister';
 import './Choose.css';
 
-export default function Choose({userName,userPass,userEmail,userImage,changeHandlers}) {
+export default function Choose({userName,userPass,userEmail,userImage, userImageFile, changeHandlers}) {
     return (
         <div className = "Choose">
             <Router>
@@ -18,14 +18,14 @@ export default function Choose({userName,userPass,userEmail,userImage,changeHand
                 <Route path="/signIn"
                     render={() =>
                         <LoginRegister changeHandlers={changeHandlers} type="signIn"
-                            name={userName} password={userPass} userEmail={userEmail} userImage = {userImage} />
+                            name={userName} password={userPass} userEmail={userEmail} userImage = {userImage} userImageFile = {userImageFile} />
                     }
                 />
 
                 <Route path="/register"
                     render={() =>
                         <LoginRegister changeHandlers={changeHandlers} type="register"
-                            name={userName} password={userPass} userEmail={userEmail} userImage = {userImage}/>
+                            name={userName} password={userPass} userEmail={userEmail} userImage = {userImage} userImageFile = {userImageFile} />
                     }
                 />
 
