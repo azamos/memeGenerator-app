@@ -9,7 +9,7 @@ export default function Choose({userName,userPass,userEmail,userImage,changeHand
         <div className = "Choose">
             <Router>
                 <Link to="/signIn">
-                    <Button variant="extendedFab">Sign In</Button>
+                    <Button variant="extendedFab" onClick = {changeHandlers.resetEmailAndImage}>Sign In</Button>
                 </Link>
                 <Link to="/register">
                     <Button variant="extendedFab">Register</Button>

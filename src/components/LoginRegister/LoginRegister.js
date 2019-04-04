@@ -24,7 +24,7 @@ export default function LoginRegister({ name, password, userEmail, userImage, ch
         <div className="LoginRegister">
             <TextField id="name" value={name} onChange={changeHandlers.userNameChanged} label="name" />
             <Divider />
-            <TextField id="password" value={password} onChange={changeHandlers.userPassChanged} label="password" />
+            <TextField id="password" type = "password" value={password} onChange={changeHandlers.userPassChanged} label="password" />
             <Divider />
             {
                 type === "signIn" ? <span></span>

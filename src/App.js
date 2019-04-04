@@ -31,6 +31,7 @@ function App() {
     userPassChanged,
     userEmailChanged,
     userImageChanged,
+    resetEmailAndImage,
     userLogged
   }
 
@@ -121,6 +122,10 @@ function App() {
   }
   function userImageChanged(e){
     setUserImage(e.target.value);
+  }
+  function resetEmailAndImage(){
+    setUserImage('');
+    setUserEmail('');
   }
 
 
