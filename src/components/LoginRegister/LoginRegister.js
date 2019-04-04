@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import './LoginRegister.css';
 import db from '../../services/dbServices';
 
-export default function LoginRegister({ name, password, userEmail, userImage , changeHandlers, type }) {
+export default function LoginRegister({ name, password, userEmail, userImage, changeHandlers, type }) {
     function signIn() {
         db.find(name, 'users', password)
             .then(result => {
@@ -17,7 +17,7 @@ export default function LoginRegister({ name, password, userEmail, userImage , c
             .catch(err => console.log(err));
     }
     function register(e) {
-        db.insertUser(name,password,userEmail,e.target.files[0]);
+        db.insertUser(name, password, userEmail, e.target.files[0]);
     }
 
     return (
@@ -27,20 +27,16 @@ export default function LoginRegister({ name, password, userEmail, userImage , c
             <TextField id="password" value={password} onChange={changeHandlers.userPassChanged} label="password" />
             <Divider />
             {
-                type === "register" ? <Email email = {userEmail} emailChanged = {changeHandlers.userEmailChanged}
-                  image = {userImage} imageChanged = {changeHandlers.userImageChanged} /> : <span></span>
+                type === "signIn" ? <span></span>
+                    :
+                    <div>
+                        <TextField id="email" value={userEmail} onChange={changeHandlers.userEmailChanged} label="email" />
+                        <Divider />
+                        <TextField id="image" type="file" value={userImage} onChange={changeHandlers.userImageChanged} label="image" />
+                        <Divider />
+                    </div>
             }
             <Button onClick={type === "register" ? register : signIn} variant="extendedFab" className="Finish">Finish</Button>
         </div>
     );
-    function Email({ email, emailChanged , image, imageChanged}) {
-        return (
-            <div>
-                <TextField id="email" value={email} onChange={emailChanged} label="email" />
-                <Divider />
-                <input  type="file" value={image} onChange={imageChanged} label="image" id="image" />
-                <Divider />
-            </div>
-        );
-    }
 }
