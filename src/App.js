@@ -25,14 +25,16 @@ function App() {
   const [userName, setUserName] = useState('');
   const [userPass, setUserPass] = useState('');
   const [userEmail, setUserEmail] = useState('');
+  const [userImage, setUserImage] = useState('');//userImage will hold chosen file value for upload.
   const changeHandlers = {
     userNameChanged,
     userPassChanged,
     userEmailChanged,
+    userImageChanged,
     userLogged
   }
 
-  const [currentUser, setCurrentUser] = useState({ name: anon, image: anonImage });
+  const [currentUser, setCurrentUser] = useState({ name: anon, image: anonImage });//currentUser.image will hold source of user image
 
   return (
     <div className="App">
@@ -72,7 +74,7 @@ function App() {
         <Route path="/generateAMeme" />
 
         <Route path="/login or register" render={() =>
-          <Choose userName={userName} userPass={userPass} userEmail={userEmail} changeHandlers={changeHandlers} />
+          <Choose userName={userName} userPass={userPass} userEmail={userEmail} userImage = {userImage} changeHandlers={changeHandlers} />
         } />
 
       </Router>
@@ -116,6 +118,9 @@ function App() {
   }
   function userEmailChanged(e) {
     setUserEmail(e.target.value);
+  }
+  function userImageChanged(e){
+    setUserImage(e.target.value);
   }
 
 
